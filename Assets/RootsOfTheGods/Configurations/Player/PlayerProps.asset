@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7bed656defd4204aacd29af52da61fa, type: 3}
   m_Name: PlayerProps
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  jumpForce: 20
-  gravity: 9.81
+  moveSpeed: 3
+  jumpForce: 12
+  gravity: 4
   groundCheckDistance: 0.5
   groundLayer:
     serializedVersion: 2
@@ -25,7 +25,7 @@ MonoBehaviour:
   maxJumps: 2
   CharacterSize: {x: 1, y: 2, z: 1}
   JumpBuffer: 7
-  GroundBuffer: 4
+  GroundBuffer: 6
   JumpBoostForGroundedMovementDistance:
     serializedVersion: 2
     m_Curve:

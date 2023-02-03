@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using GameJamKit.Scripts.Utils.Singleton;
@@ -12,6 +13,8 @@ namespace RootsOfTheGods.Scripts.Fader
         [SerializeField]
         private Image BlackOverlay;
 
+        private CancellationToken _cancellationToken;
+
         private void Awake()
         {
             if (BlackOverlay == null)
@@ -20,6 +23,7 @@ namespace RootsOfTheGods.Scripts.Fader
             }
             
             DontDestroyOnLoad(this);
+            _cancellationToken = this.GetCancellationTokenOnDestroy();
         }
 
         public async UniTask FadeIn()
@@ -30,7 +34,7 @@ namespace RootsOfTheGods.Scripts.Fader
                 return;
             }
             var fade = BlackOverlay.DOFade(1f, 0.5f);
-            await UniTask.WaitUntil(() => !fade.active || fade.IsComplete());
+            await UniTask.WaitUntil(() => !fade.active || fade.IsComplete(), cancellationToken: _cancellationToken);
         }
         
         public async UniTask FadeOut()
@@ -41,7 +45,7 @@ namespace RootsOfTheGods.Scripts.Fader
                 return;
             }
             var fade = BlackOverlay.DOFade(0f, 0.5f);
-            await UniTask.WaitUntil(() => !fade.active || fade.IsComplete());
+            await UniTask.WaitUntil(() => !fade.active || fade.IsComplete(), cancellationToken: _cancellationToken);
         }
     }
 }

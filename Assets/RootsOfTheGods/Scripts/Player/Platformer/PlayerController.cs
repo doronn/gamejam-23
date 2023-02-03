@@ -8,7 +8,8 @@ namespace Scripts.Player.Platformer
         public int Id { get; private set; }
 
         private PlayerProperties _playerProperties; // The scriptable object with the gameplay properties
-
+        private IPlayerEventsListener _playerEventsListener;
+        
         private bool _enabled = false;
         private bool _isGrounded = false;         // Flag to track whether the player is grounded
         private int _jumpsRemaining = 0;          // The number of jumps remaining
@@ -41,8 +42,7 @@ namespace Scripts.Player.Platformer
         };
 
         private float _boostForMovementDistance;
-
-
+        
         public void Inject(PlayerProperties playerProperties, int id, Vector3 startPosition)
         {
             _playerProperties = playerProperties;
@@ -54,6 +54,8 @@ namespace Scripts.Player.Platformer
             CollisionDirections[3].layerMask = _playerProperties.groundLayer;
 
             _nextWantedPosition = startPosition;
+
+            _playerEventsListener = GetComponentInChildren<IPlayerEventsListener>();
         }
 
         public void SetNextPosition(Vector3 position)
@@ -131,12 +133,19 @@ namespace Scripts.Player.Platformer
             if (!_isGrounded && _remainingGroundBuffer > 0)
             {
                 _isGrounded = true;
+                _playerEventsListener?.OnGround();
+
                 _remainingGroundBuffer -= _fixedUpdatesToCatchup;
+            }
+            else if (!_isGrounded)
+            {
+                _playerEventsListener?.OnFall();
             }
         }
 
         private void UpdateNextPosition()
         {
+            _playerEventsListener?.OnVelocity(_currentVelocity);
             _nextWantedPosition += _currentVelocity;
 
             if (_isGrounded)
@@ -193,6 +202,8 @@ namespace Scripts.Player.Platformer
             if (_didRequestJump && (_isGrounded || _jumpsRemaining > 0))
             {
                 didJump = true;
+                _playerEventsListener?.OnJump();
+
                 _velocity.y = _playerProperties.jumpForce * _jumpForcePercentage * _boostForMovementDistance;
                 _jumpsRemaining--;
                 _remainingGroundBuffer = 0;
@@ -242,6 +253,7 @@ namespace Scripts.Player.Platformer
                     var wasAlreadyGrounded = _isGrounded;
                     if (directionCheckIsDown)
                     {
+                        _playerEventsListener?.OnGround();
                         _isGrounded = _velocity.y <= 0;
                     }
 
