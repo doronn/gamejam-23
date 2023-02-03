@@ -24,8 +24,8 @@ MonoBehaviour:
     m_Bits: 128
   maxJumps: 2
   CharacterSize: {x: 0.5, y: 2, z: 0.5}
-  JumpBuffer: 5
-  GroundBuffer: 5
+  JumpBuffer: 7
+  GroundBuffer: 4
   JumpBoostForGroundedMovementDistance:
     serializedVersion: 2
     m_Curve:

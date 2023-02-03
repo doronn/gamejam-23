@@ -204,19 +204,29 @@ namespace Scripts.Player.Platformer
             var checkDirection = _ray.direction;
             // Check if the player is grounded by casting a ray down from the player's position
             var velocityInDirection = Vector3.Dot(checkDirection, _currentVelocity);
-            var velocityFactorToAdd = velocityInDirection;
 
             var groundCheckDistance = Math.Abs(Vector3.Dot(checkDirection, _playerProperties.CharacterSize) * 0.5f);
-            var rayDistance = groundCheckDistance + velocityFactorToAdd;
-            var rayEndPosition = CurrentPlayerLocalPosition + checkDirection * rayDistance;
+            var rayDistance = groundCheckDistance + velocityInDirection;
             var directionCheckIsDown = checkDirection.y < 0;
+
+            
+            if (directionCheckIsDown && Physics.Raycast(CurrentPlayerLocalPosition, checkDirection, out var initialHitCheck, rayDistance,
+                    collisionLayerMask))
+            {
+                checkDirection = Vector3.Project(checkDirection, initialHitCheck.normal);
+                velocityInDirection = Vector3.Dot(_currentVelocity, checkDirection);
+                groundCheckDistance = Math.Abs(Vector3.Dot(checkDirection, _playerProperties.CharacterSize) * 0.5f);
+                rayDistance = groundCheckDistance + velocityInDirection;
+            }
             if (Physics.Raycast(CurrentPlayerLocalPosition, checkDirection, out var hit, rayDistance, collisionLayerMask))
             {
                 // Set the player as grounded if it is falling onto the platform from above
+                var rayEndPosition = CurrentPlayerLocalPosition + checkDirection * rayDistance;
                 Debug.DrawLine(CurrentPlayerLocalPosition, hit.point, Color.blue);
                 Debug.DrawLine(hit.point, rayEndPosition, Color.red);
-                var hitHorizontalForHorizontalDirectionCheck = hit.normal.x < 0 != checkDirection.x < 0;
+                var hitHorizontalForHorizontalDirectionCheck = hit.normal.x < 0 != checkDirection.x < 0 && _ray.direction.y == 0;
                 var hitVerticalForVerticalDirectionCheck = hit.normal.y < 0 != directionCheckIsDown;
+
                 if (hitHorizontalForHorizontalDirectionCheck || hitVerticalForVerticalDirectionCheck)
                 {
                     var wasAlreadyGrounded = _isGrounded;
@@ -245,7 +255,7 @@ namespace Scripts.Player.Platformer
 
                     var shouldBlockOnVerticalCollision = hitVerticalForVerticalDirectionCheck && (!directionCheckIsDown || _isGrounded);
                     var nextYPosition = shouldBlockOnVerticalCollision
-                        ? hit.collider.ClosestPointOnBounds(hit.point).y + -checkDirection.y * groundCheckDistance
+                        ? hit.collider.ClosestPointOnBounds(hit.point).y + -checkDirection.normalized.y * groundCheckDistance
                         : position.y;
                     position =
                         new Vector3(nextXPosition - (position.x - _nextWantedPosition.x), nextYPosition - (position.y - _nextWantedPosition.y), position.z);
@@ -264,6 +274,7 @@ namespace Scripts.Player.Platformer
             }
             else
             {
+                var rayEndPosition = CurrentPlayerLocalPosition + checkDirection * rayDistance;
                 Debug.DrawLine(CurrentPlayerLocalPosition, rayEndPosition, Color.blue);
                 if (directionCheckIsDown)
                 {
