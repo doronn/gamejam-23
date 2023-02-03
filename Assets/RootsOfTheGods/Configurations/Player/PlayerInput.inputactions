@@ -1,5 +1,5 @@
 {
-    "name": "New Controls",
+    "name": "PlayerInput",
     "maps": [
         {
             "name": "Player",
@@ -18,6 +18,15 @@
                     "name": "Movement",
                     "type": "Button",
                     "id": "c80fb52c-aff5-4f03-89df-a40d16221032",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "800dfd35-b284-452e-ae1d-cd725c8ec788",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -68,6 +77,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "5c490d71-4b4c-4213-8a0d-e2cb159b3169",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

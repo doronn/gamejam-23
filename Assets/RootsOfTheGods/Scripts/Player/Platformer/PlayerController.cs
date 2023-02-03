@@ -56,6 +56,16 @@ namespace Scripts.Player.Platformer
             _nextWantedPosition = startPosition;
         }
 
+        public void SetNextPosition(Vector3 position)
+        {
+            _nextWantedPosition = position;
+        }
+
+        public void StopPlayer()
+        {
+            _enabled = false;
+        }
+
         private void Update()
         {
             if (!_enabled)

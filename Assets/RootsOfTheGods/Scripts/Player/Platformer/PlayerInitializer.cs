@@ -18,10 +18,15 @@ public class PlayerInitializer : MonoBehaviour
     [SerializeField]
     private Vector3 _startPosition;
 
-    // Start is called before the first frame update
-    void Start()
+    public void InitPlayerDefaultInScene()
     {
         _player.Inject(_playerProperties, _id, _startPosition);
+        _player.ConnectController();
+    }
+    
+    public void InitPlayerInSpecificPlace(Vector3 startPosition)
+    {
+        _player.Inject(_playerProperties, _id, startPosition);
         _player.ConnectController();
     }
 

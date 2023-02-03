@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/GameJamKit/Scenes/MainMenuScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/GameJamKit/Scenes/GameScene.unity
+    path: Assets/GameJamKit/Scenes/GameScene1.unity
     guid: c994ba284ea1fad4eaacf880c4aba0d1
+  - enabled: 1
+    path: Assets/GameJamKit/Scenes/GameScene2.unity
+    guid: c55b676916e984c4cbbb3e1f8193663f
   m_configObjects: {}
