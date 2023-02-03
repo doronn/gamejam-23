@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerProps
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpForce: 10
+  jumpForce: 20
   gravity: 9.81
   groundCheckDistance: 0.5
   groundLayer:
@@ -22,10 +22,10 @@ MonoBehaviour:
   solidGroundLayer:
     serializedVersion: 2
     m_Bits: 128
-  maxJumps: 1
+  maxJumps: 2
   CharacterSize: {x: 0.5, y: 2, z: 0.5}
-  JumpBuffer: 0
-  GroundBuffer: 0
+  JumpBuffer: 5
+  GroundBuffer: 5
   JumpBoostForGroundedMovementDistance:
     serializedVersion: 2
     m_Curve:

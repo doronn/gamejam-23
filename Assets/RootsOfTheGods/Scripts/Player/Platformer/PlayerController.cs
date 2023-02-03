@@ -204,7 +204,7 @@ namespace Scripts.Player.Platformer
             var checkDirection = _ray.direction;
             // Check if the player is grounded by casting a ray down from the player's position
             var velocityInDirection = Vector3.Dot(checkDirection, _currentVelocity);
-            var velocityFactorToAdd = Math.Abs(velocityInDirection);
+            var velocityFactorToAdd = velocityInDirection;
 
             var groundCheckDistance = Math.Abs(Vector3.Dot(checkDirection, _playerProperties.CharacterSize) * 0.5f);
             var rayDistance = groundCheckDistance + velocityFactorToAdd;
