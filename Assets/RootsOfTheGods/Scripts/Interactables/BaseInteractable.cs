@@ -5,7 +5,7 @@ namespace RootsOfTheGods.Scripts.Interactables
 {
     public abstract class BaseInteractable : MonoBehaviour, IInteractable
     {
-        public bool IsInteractive { get; private set; }
+        public bool IsInteractive { get; protected set; }
 
         [SerializeField]
         private LayerMask _interactableLayers;

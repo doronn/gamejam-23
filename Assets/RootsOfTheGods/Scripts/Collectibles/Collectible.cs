@@ -32,6 +32,7 @@ namespace RootsOfTheGods.Scripts.Collectibles
 
         private async UniTaskVoid Collect()
         {
+            IsInteractive = false;
             var scaleTween = transform.DOScale(transform.localScale * 3, 0.5f);
             await _portalInteractionManager.CollectObject(CollectibleType);
             await UniTask.WaitUntil(() => !scaleTween.active || scaleTween.IsComplete(),

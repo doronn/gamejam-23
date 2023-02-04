@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Portal1
   m_EditorClassIdentifier: 
   PortalId: 1
-  PortalScene: 1
+  PortalScene: 3
   DestinationPortal: {fileID: 11400000, guid: 79a7c88fcfc60be47bf9ca4f32bd89b0, type: 2}

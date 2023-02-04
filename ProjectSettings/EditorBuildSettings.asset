@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GameJamKit/Scenes/GameScene2.unity
     guid: c55b676916e984c4cbbb3e1f8193663f
+  - enabled: 1
+    path: Assets/GameJamKit/Scenes/MainMap.unity
+    guid: 28aaaffea420da04c855d65af097a444
   m_configObjects: {}

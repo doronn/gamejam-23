@@ -82,7 +82,7 @@
                     "name": "",
                     "id": "5c490d71-4b4c-4213-8a0d-e2cb159b3169",
                     "path": "<Keyboard>/w",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
