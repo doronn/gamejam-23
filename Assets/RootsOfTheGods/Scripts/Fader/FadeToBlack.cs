@@ -3,27 +3,40 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using GameJamKit.Scripts.Utils.Singleton;
+using RootsOfTheGods.Scripts.SingletonsManager;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace RootsOfTheGods.Scripts.Fader
 {
-    public class FadeToBlack : Singleton<FadeToBlack>
+    public class FadeToBlack : MonoBehaviour, IFadeToBlack
     {
         [SerializeField]
         private Image BlackOverlay;
 
         private CancellationToken _cancellationToken;
 
+        private static FadeToBlack _privateInstance;
         private void Awake()
         {
+            if (_privateInstance == null)
+            {
+                _privateInstance = this;
+            }
+            else if (this != _privateInstance)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            
             if (BlackOverlay == null)
             {
                 BlackOverlay = GetComponentInChildren<Image>();
             }
             
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
             _cancellationToken = this.GetCancellationTokenOnDestroy();
+            SingletonManager.Instance.RegisterInstance(this);
         }
 
         public async UniTask FadeIn()
@@ -47,5 +60,21 @@ namespace RootsOfTheGods.Scripts.Fader
             var fade = BlackOverlay.DOFade(0f, 0.5f);
             await UniTask.WaitUntil(() => !fade.active || fade.IsComplete(), cancellationToken: _cancellationToken);
         }
+
+        private void OnDestroy()
+        {
+            if (!SingletonManager.IsAvailable())
+            {
+                return;
+            }
+            
+            SingletonManager.Instance.UnRegisterInstance(this);
+        }
+    }
+
+    public interface IFadeToBlack
+    {
+        UniTask FadeIn();
+        UniTask FadeOut();
     }
 }

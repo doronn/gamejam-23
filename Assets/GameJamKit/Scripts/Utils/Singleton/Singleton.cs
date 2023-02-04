@@ -14,6 +14,11 @@ namespace GameJamKit.Scripts.Utils.Singleton
 
         private static readonly object _lock = new();
 
+        public static bool IsAvailable()
+        {
+            return applicationIsQuitting;
+        }
+        
         public static T Instance
         {
             get

@@ -1,40 +1,27 @@
-﻿using System;
+﻿using RootsOfTheGods.Scripts.Interactables;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace RootsOfTheGods.Scripts.Portals
 {
-    public class PortalObject : MonoBehaviour
+    public class PortalObject : BaseInteractable
     {
-        public bool IsPortalInteractive;
         [field: SerializeField]
         public PortalProperties PortalProperties { get; private set; }
-        
-        [SerializeField]
-        private LayerMask _interactableLayers;
 
-        private IPortalInteractionManager _portalInteractionManager;
-
-        private void OnTriggerEnter(Collider other)
+        public override void Interact()
         {
-            if ((_interactableLayers & (1 << other.gameObject.layer)) != 0)
-            {
-                IsPortalInteractive = true;
-                _portalInteractionManager.SetPortalAsActive(this);
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if ((_interactableLayers & (1 << other.gameObject.layer)) != 0)
-            {
-                IsPortalInteractive = false;
-            }
+            _portalInteractionManager.GotToPortalWithProperties(PortalProperties.DestinationPortal).Forget();
         }
 
         public void Setup(IPortalInteractionManager portalInteractionManager)
         {
             _portalInteractionManager = portalInteractionManager;
         }
+    }
+
+    public interface IInteractable
+    {
+        bool IsInteractive { get; }
+        void Interact();
     }
 }

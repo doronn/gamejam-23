@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using RootsOfTheGods.Scripts.Fader;
+using RootsOfTheGods.Scripts.SingletonsManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +15,7 @@ namespace GameJamKit.Scripts.Utils
 
         private async UniTaskVoid LoadSceneWithFade(string sceneName)
         {
-            await FadeToBlack.Instance.FadeIn();
+            await SingletonManager.Instance.FadeToBlackInstance.FadeIn();
             SceneManager.LoadScene(sceneName);
         }
     }

@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d59657aeea44239aa730ba7e870507, type: 3}
+  m_Name: CollectiblesConfigurations
+  m_EditorClassIdentifier: 
+  StartGameTexts:
+  - "I woke up in this dark place.\nI don\u2019t know where I am? How did I get here???\nWait
+    a minute, I'm not even sure what\u05F3s my name\u2026."
+  - 'What the hell is going on??!
+
+    Help! Help! Is there anybody here? Please
+    let me out of here!'
+  - "Damn it, I can\u2019t keep waiting here for someone to find me,\nI gotta find
+    a way out on my own and figure out what the hell is going on on my own"
+  <Collectibles>k__BackingField:
+    <Collectibles>k__BackingField:
+      reorderableList:
+        canAdd: 1
+        canRemove: 1
+        draggable: 1
+        expandable: 1
+        multipleSelection: 1
+        isExpanded: 1
+        label:
+          m_Text: Keys
+          m_Image: {fileID: 0}
+          m_Tooltip: 
+        headerHeight: 18
+        footerHeight: 13
+        slideEasing: 0.15
+        verticalSpacing: 2
+        showDefaultBackground: 1
+        elementDisplayType: 0
+        elementNameProperty: 
+        elementNameOverride: 
+        elementIcon: {fileID: 0}
+      reqReferences: {fileID: 0}
+      isExpanded: 1
+      _keyValues: 00000000010000000200000003000000040000000500000006000000
+      _keys: 00000000010000000200000003000000040000000500000006000000
+      _values:
+      - <Name>k__BackingField: Ring
+        <TextToComment>k__BackingField: I think i was married... I think that's my
+          wedding ring
+      - <Name>k__BackingField: 
+        <TextToComment>k__BackingField: knife with blood - thats look familiar...
+      - <Name>k__BackingField: 
+        <TextToComment>k__BackingField: I think i remember now... I had a family
+      - <Name>k__BackingField: 
+        <TextToComment>k__BackingField: I might have deja vu
+      - <Name>k__BackingField: 
+        <TextToComment>k__BackingField: "it was only a fiction romantic novel she
+          was trying to write\u2026"
+      - <Name>k__BackingField: 
+        <TextToComment>k__BackingField: What is this??? i know this thing
+      - <Name>k__BackingField: Key
+        <TextToComment>k__BackingField: Oh now i remember!
+  EndGameText: "Oh no, oh no... I remember every thing now\u2026\nPlease tell me
+    I didn't do it\u2026\nI didn't mean to kill my wife. I just got so mad... The
+    thought of\nher cheating on me..\nBut I swear I didn't want to kill her\u2026
+    I\u2019m sorry, I loved her\u2026"
+  EndGameTextBeforeDark: "Now please let me out of here\u2026 \nI got my punishment\u2026
+    you can\u2019t leave me here for good\u2026\nThis can\u2019t be the end\u2026"
+  EndGameTextAfterDark: THE END
