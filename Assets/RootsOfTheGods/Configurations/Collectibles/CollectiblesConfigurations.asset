@@ -21,6 +21,14 @@ MonoBehaviour:
     let me out of here!'
   - "Damn it, I can\u2019t keep waiting here for someone to find me,\nI gotta find
     a way out on my own and figure out what the hell is going on on my own"
+  - 'How to Play:
+
+    Move left and right with A and D
+
+    Jump with Space (You
+    can also Double jump)
+
+    Interact with W'
   <Collectibles>k__BackingField:
     <Collectibles>k__BackingField:
       reorderableList:
@@ -49,25 +57,71 @@ MonoBehaviour:
       _keys: 00000000010000000200000003000000040000000500000006000000
       _values:
       - <Name>k__BackingField: Ring
-        <TextToComment>k__BackingField: I think i was married... I think that's my
-          wedding ring
+        <TextToComment>k__BackingField: 'I think i was married...
+
+          I think
+          that''s my WEDDING RING'
       - <Name>k__BackingField: 
-        <TextToComment>k__BackingField: knife with blood - thats look familiar...
+        <TextToComment>k__BackingField: 'A bloody knife
+
+          Looks oddly familiar...'
       - <Name>k__BackingField: 
-        <TextToComment>k__BackingField: I think i remember now... I had a family
+        <TextToComment>k__BackingField: 'A picture of a man, a woman and a child...
+
+          I
+          think i remember now...
+
+          I had a family'
       - <Name>k__BackingField: 
-        <TextToComment>k__BackingField: I might have deja vu
+        <TextToComment>k__BackingField: 'Shackles...
+
+          I think I''m having
+          a deja vu'
       - <Name>k__BackingField: 
-        <TextToComment>k__BackingField: "it was only a fiction romantic novel she
-          was trying to write\u2026"
+        <TextToComment>k__BackingField: "A letter\nIt was only a fiction romantic
+          novel she was trying to write\u2026"
       - <Name>k__BackingField: 
-        <TextToComment>k__BackingField: What is this??? i know this thing
+        <TextToComment>k__BackingField: 'A syringe
+
+          What is this??? Why
+          does this seem so familliar?'
       - <Name>k__BackingField: Key
-        <TextToComment>k__BackingField: Oh now i remember!
-  EndGameText: "Oh no, oh no... I remember every thing now\u2026\nPlease tell me
-    I didn't do it\u2026\nI didn't mean to kill my wife. I just got so mad... The
-    thought of\nher cheating on me..\nBut I swear I didn't want to kill her\u2026
+        <TextToComment>k__BackingField: 'A KEY
+
+          Oh no... NOW i remember!'
+  <PortalsByCollectedTypes>k__BackingField:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 030000000500000006000000
+    _keys: 030000000500000006000000
+    _values:
+    - <CollectibleTypes>k__BackingField: 040000000500000003000000
+    - <CollectibleTypes>k__BackingField: 000000000200000001000000
+    - <CollectibleTypes>k__BackingField: 000000000200000001000000
+  EndGameText: "Oh no, oh no... I remember everything now\u2026\nPlease tell me I
+    didn't do it\u2026\nI didn't mean to kill my wife.\nI just got so mad... The
+    thought of her cheating on me..\nBut I swear I didn't want to kill her\u2026
     I\u2019m sorry, I loved her\u2026"
   EndGameTextBeforeDark: "Now please let me out of here\u2026 \nI got my punishment\u2026
     you can\u2019t leave me here for good\u2026\nThis can\u2019t be the end\u2026"
-  EndGameTextAfterDark: THE END
+  EndGameTextAfterDark: THE END ?

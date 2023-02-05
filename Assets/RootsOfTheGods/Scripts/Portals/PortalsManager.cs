@@ -68,8 +68,33 @@ namespace RootsOfTheGods.Scripts.Portals
                     collectible.Setup(this);
                 }
             }
+            
+            UpdatePortalsState(true).Forget();
 
             _collectibles = null;
+        }
+
+        private async UniTask UpdatePortalsState(bool initialState = false)
+        {
+            var anyPortalAppeard = false;
+            for (var i = 0; i < _portalObjects.Length; i++)
+            {
+                var portalId = _portalObjects[i].PortalProperties.PortalId;
+                var hasAnyRemainingRequirement = _currentCollectiblesState.PortalsByCollectedTypes.TryGetValue(portalId,
+                    out var portalsByCollectedType) && portalsByCollectedType.CollectibleTypes.Any(type => _currentCollectiblesState.Collectibles.Collectibles.ContainsKey(type));
+
+                var wasActive = _portalObjects[i].gameObject.activeSelf;
+                var portalShouldBeActive = !hasAnyRemainingRequirement;
+                _portalObjects[i].gameObject.SetActive(portalShouldBeActive);
+
+                anyPortalAppeard |= !initialState && !wasActive && portalShouldBeActive;
+            }
+            
+            if (anyPortalAppeard)
+            {
+                await _dialogueManagerInstance.ShowMessage("I Heard some portal appear!");
+                await _dialogueManagerInstance.HideMessage();
+            }
         }
 
         private async UniTaskVoid InitAsync()
@@ -172,6 +197,7 @@ namespace RootsOfTheGods.Scripts.Portals
                 _playerController.StopPlayer();
                 await _dialogueManagerInstance.ShowMessage(collectibleData.TextToComment);
                 await _dialogueManagerInstance.HideMessage();
+                await UpdatePortalsState();
                 _playerController.ConnectController();
             }
 
